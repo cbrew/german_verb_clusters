@@ -1,0 +1,23 @@
+
+* frequency distribution;
+  counts how often a certain verb appeared with a certain frame in the
+  training corpus
+* original probability distribution; based on the frame frequencies
+* sharpened probability distribution;
+  frequencies are squared first before creating the prob-distrib;
+  reinforces the usage or non-usage of frames
+* original binary distribution;
+  value is 1 if frame probability is > 1% (and PP probability in
+  version 2 is > 20%)
+* sharpened binary distribution;
+  same cut-offs on sharpened prob-distrib
+* association values;
+  according to Resnik:97 I defined
+    assoc(verb,frame) = p(frame|verb) * log( p(frame|verb) / p(frame) )
+  and used the association values for the distribution
+* selectional preferences;
+  for normalisation, I included the selectional preference into the
+  association value:
+    sel-pref(verb) = sum_{frame_i} assoc(verb,frame_i)
+  and calculated
+    assoc'(verb,frame) = 1/sel-pref(verb) * assoc(verb,frame)

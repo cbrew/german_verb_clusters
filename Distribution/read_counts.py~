@@ -1,0 +1,28 @@
+#! /bin/env python
+
+from string import split
+
+import fileinput
+
+f = {}
+verb = None
+
+for line in fileinput.input():
+    arr = split(line)
+    if len(arr) == 1:
+        verb = arr[0]
+        f[verb] = {}
+    elif len(arr) == 2:
+        f[verb][arr[0]] = float(arr[1])
+
+print "",
+for v in f[verb].keys():
+    print v,
+print ""
+for (k,v) in f.items():
+    print k,
+    for (verb,attr) in v.items():
+        print attr,
+    print ""
+
+
